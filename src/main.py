@@ -19,6 +19,5 @@ if __name__ == '__main__':
     parse_table_obj.print_table()
 
     parse4oat_obj = parse4oat.Parse4Oat(parse_table_obj)
-
-
-
+    input_string = "int id ( ) { var id = stringliteral ; id ( id ) ; return intliteral ; }"
+    parse4oat_obj.parse(input_string)

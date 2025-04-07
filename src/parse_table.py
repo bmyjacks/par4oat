@@ -2,6 +2,10 @@ class ParseTable:
     def __init__(self, ff_sets):
         self.table = {}
         self.ff_sets = ff_sets
+        self.start_symbol = list(ff_sets.rule.keys())[0]
+
+    def is_terminal(self, symbol):
+        return symbol not in self.ff_sets.rule
 
     def compute_table(self):
         def get_first_set(production):
