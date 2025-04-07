@@ -1,5 +1,5 @@
 .idea
-.venv
+.venv.1
 .DS_Store
 __pycache__
 *.dot

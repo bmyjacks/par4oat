@@ -100,22 +100,20 @@ class FFSets:
                         if self.is_terminal(symbol):
                             continue
 
-                        if i + 1 < len(production):
-                            next_symbol = production[i + 1]
+                        for j in range(i + 1, len(production)):
+                            next_symbol = production[j]
                             if self.is_terminal(next_symbol):
                                 if add_to_follow(next_symbol, symbol):
                                     changed = True
+                                break
                             else:
                                 for s in self.first.get(next_symbol):
                                     if s == "''":
                                         continue
                                     if add_to_follow(s, symbol):
                                         changed = True
-
-                                if self.is_nullable(next_symbol):
-                                    for s in self.follow.get(non_terminal):
-                                        if add_to_follow(s, symbol):
-                                            changed = True
+                                if not self.is_nullable(next_symbol):
+                                    break
                         else:
                             for s in self.follow.get(non_terminal):
                                 if add_to_follow(s, symbol):
