@@ -21,11 +21,3 @@ class Node:
             dot_representation += f'"{self.id}" -> "{child.id}";\n'
             dot_representation += child.to_dot()
         return dot_representation
-
-    def __repr__(self):
-        return f"Node({self.data})"
-
-    def print_tree(self, level=0):
-        print(' ' * (level * 2) + str(self.data))
-        for child in self.children:
-            child.print_tree(level + 1)

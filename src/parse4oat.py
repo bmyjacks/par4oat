@@ -9,7 +9,7 @@ class Parse4Oat:
     def is_terminal(self, symbol):
         return self.parse_table.is_terminal(symbol)
 
-    def parse(self, tokens):
+    def parse(self, tokens, enable_dot=False):
         stack = [(self.parse_table.start_symbol, self.cst), ('$', None)]
 
         tokens = tokens.split() + ['$']
@@ -21,8 +21,6 @@ class Parse4Oat:
             if self.is_terminal(stack_top):
                 # Terminal symbol
                 if stack_top == current_token:
-                    # new_node = Node(current_token)
-                    # current_node.add_child(new_node)
                     tokens.pop(0)
             else:
                 # Non-terminal symbol
@@ -42,10 +40,9 @@ class Parse4Oat:
         else:
             print("Error: Input string not fully consumed.")
 
-        dot_representation = self.cst.to_dot()
-        with open("output.dot", "w") as f:
-            f.write("digraph G {\n")
-            f.write(dot_representation)
-            f.write("}\n")
-
-        self.cst.print_tree()
+        if enable_dot:
+            dot_representation = self.cst.to_dot()
+            with open("output.dot", "w") as f:
+                f.write("digraph G {\n")
+                f.write(dot_representation)
+                f.write("}\n")

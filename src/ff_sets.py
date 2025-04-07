@@ -11,6 +11,22 @@ class FFSets:
     def is_terminal(self, symbol):
         return symbol not in self.rule
 
+    def print_sets(self):
+        print('--------------------')
+        print("Nullable:")
+        for non_terminal, is_nullable in self.nullable.items():
+            print(f"{non_terminal}: {is_nullable}")
+
+        print("\nFirst:")
+        for non_terminal, first_set in self.first.items():
+            print(f"{non_terminal}: {first_set}")
+
+        print("\nFollow:")
+        for non_terminal, follow_set in self.follow.items():
+            print(f"{non_terminal}: {follow_set}")
+
+        print('--------------------')
+
     def compute_nullable(self):
         for non_terminal, productions in self.rule.items():
 

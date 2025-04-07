@@ -40,8 +40,11 @@ class ParseTable:
                         self.table[non_terminal][terminal] = production
 
     def print_table(self):
+        print('--------------------')
         print("Parsing Table:")
         for non_terminal, productions in self.table.items():
             print(f"{non_terminal}:")
             for terminal, production in productions.items():
                 print(f"  {terminal} -> {production}")
+
+        print('--------------------')
